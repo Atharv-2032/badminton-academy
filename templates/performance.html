@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Performance - {{ student.name }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Performance Scores for {{ student.name }}</h2>
+
+    <!-- Add Score Form -->
+    <form method="POST" class="row g-3 mb-4">
+        <div class="col-md-3">
+            <input type="number" name="test1" class="form-control" placeholder="Test 1 (out of 100)" min="0" max="100" required>
+        </div>
+        <div class="col-md-3">
+            <input type="number" name="test2" class="form-control" placeholder="Test 2 (out of 100)" min="0" max="100" required>
+        </div>
+        <div class="col-md-3">
+            <input type="number" name="test3" class="form-control" placeholder="Test 3 (out of 100)" min="0" max="100" required>
+        </div>
+        <div class="col-md-3 d-grid">
+            <button type="submit" class="btn btn-success">Add Score</button>
+        </div>
+    </form>
+
+    <!-- Scores Table -->
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Date</th>
+                <th>Test 1</th>
+                <th>Test 2</th>
+                <th>Test 3</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for score in scores %}
+            <tr>
+                <td>{{ score.date.strftime('%Y-%m-%d') }}</td>
+                <td>{{ score.test1 }}</td>
+                <td>{{ score.test2 }}</td>
+                <td>{{ score.test3 }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="4" class="text-center">No scores recorded.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
