@@ -31,6 +31,11 @@ pipeline {
                 ''', odcInstallation: 'OWASP-DC'
             }
         }
+        stage('Build Docker Image') {
+            steps {
+                bat 'docker build -t badminton_academy .'
+            }
+        }
 
 
 } 
