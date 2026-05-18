@@ -14,8 +14,15 @@ pipeline {
                 echo 'Jenkinsfile is working'
             }
         }
+        stage('SonarCloud Analysis') {
+            steps {
+                withSonarQubeEnv('SonarCloud') {
+                    bat "${tool 'SonarScanner'}\\bin\\sonar-scanner.bat"
+                }
+            }
         
     }
 
 
-}   
+} 
+}  
